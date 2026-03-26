@@ -258,76 +258,6 @@
       background: #FAFAFE;
     }
 
-    /* Release Timeline */
-    .timeline {
-      position: relative;
-      padding-left: 28px;
-    }
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 6px;
-      top: 4px;
-      bottom: 4px;
-      width: 2px;
-      background: var(--border);
-    }
-    .timeline-item {
-      position: relative;
-      margin-bottom: 28px;
-    }
-    .timeline-item:last-child { margin-bottom: 0; }
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -24px;
-      top: 6px;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--primary);
-      border: 2px solid var(--bg);
-    }
-    .timeline-item.completed::before {
-      background: #10B981;
-    }
-    .timeline-item.planned::before {
-      background: var(--border);
-    }
-    .timeline-item h4 {
-      font-size: 15px;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-    .timeline-item .date {
-      font-size: 12px;
-      color: var(--text-secondary);
-      font-weight: 500;
-      margin-bottom: 6px;
-    }
-    .timeline-item p {
-      font-size: 14px;
-      color: var(--text-secondary);
-      line-height: 1.5;
-    }
-    .status-badge {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 700;
-      padding: 2px 8px;
-      border-radius: 4px;
-      margin-left: 8px;
-      vertical-align: middle;
-    }
-    .status-badge.done {
-      background: #D1FAE5;
-      color: #065F46;
-    }
-    .status-badge.planned {
-      background: #FEF3C7;
-      color: #92400E;
-    }
-
     /* What's New */
     .whats-new {
       background: var(--surface);
@@ -417,9 +347,9 @@
     <div class="nav-inner">
       <a href="/" class="nav-logo">MII</a>
       <div class="nav-links">
-        <a href="/#apps">Apps</a>
-        <a href="/#about">About</a>
-        <a href="/#contact">Contact</a>
+        <a href="index.html#apps">Apps</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
         <a href="privacy.html">Privacy</a>
       </div>
     </div>
@@ -428,7 +358,7 @@
   <!-- App Hero -->
   <div class="app-hero">
     <div class="container">
-      <a href="/" class="back-link">← Back to all apps</a>
+      <a href="index.html" class="back-link">← Back to all apps</a>
     </div>
     <div class="container" style="margin-top: 8px;">
       <div class="app-hero-icon">
@@ -705,47 +635,6 @@
           <div class="icon" style="background: #F0F9FF;">📶</div>
           <h4>100% Offline</h4>
           <p>All content is bundled locally — learn anywhere without an internet connection. On a plane, in the metro, or at a café.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Development Timeline -->
-  <section style="background: #F9FAFB;">
-    <div class="container">
-      <h2 class="section-title">Development Timeline</h2>
-      <p class="section-subtitle">From launch to v1.3.1 — every major milestone.</p>
-
-      <div class="timeline">
-        <div class="timeline-item completed">
-          <h4>Phase 1 — Fix &amp; Fill <span class="status-badge done">Completed</span></h4>
-          <div class="date">February 2026</div>
-          <p>Content expansion to 950+ phrases and 524 vocabulary words. Added lesson progress indicators, continue-where-you-left-off, conjugation expansion to 40 verbs (960 forms), and onboarding-to-level routing.</p>
-        </div>
-        <div class="timeline-item completed">
-          <h4>Phase 2 — B1 &amp; Conversations <span class="status-badge done">Completed</span></h4>
-          <div class="date">April 2026</div>
-          <p>Launched B1 level with 256 phrases across 4 units. Added 30 mini-dialogues with comprehension questions and 55 cultural notes with daily rotation.</p>
-        </div>
-        <div class="timeline-item completed">
-          <h4>Phase 3 — Smart Learning <span class="status-badge done">Completed</span></h4>
-          <div class="date">May 2026</div>
-          <p>Introduced mistake journal with pattern detection, adaptive difficulty engine, daily word of the day, streak freeze, home screen UX redesign with bento-box layout, 4 A1 conjugation curriculum lessons, and content badging system.</p>
-        </div>
-        <div class="timeline-item planned">
-          <h4>Phase 4 — Polish &amp; Engagement <span class="status-badge planned">Planned</span></h4>
-          <div class="date">June 2026</div>
-          <p>UI refinements, grammar reference screen, accent input helper, mixed-tense conjugation mode, and configurable session sizes.</p>
-        </div>
-        <div class="timeline-item planned">
-          <h4>Phase 5 — Growth Features <span class="status-badge planned">Planned</span></h4>
-          <div class="date">July 2026</div>
-          <p>Social sharing, performance analytics, enhanced achievements display, and leaderboard-ready infrastructure.</p>
-        </div>
-        <div class="timeline-item planned">
-          <h4>Phase 6 — Guided Curriculum <span class="status-badge planned">Planned</span></h4>
-          <div class="date">August 2026</div>
-          <p>Adaptive learning paths, prerequisite gating, and skill-based routing for a fully guided experience.</p>
         </div>
       </div>
     </div>
