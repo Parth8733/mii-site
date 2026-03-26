@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apprenons — Learn French | MII</title>
+  <meta name="description" content="Apprenons — Master French from scratch with real phrases, spaced repetition, and eight exercise types. 100% free, 100% offline.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🇫🇷</text></svg>">
+  <style>
+    :root {
+      --primary: #7C3AED;
+      --primary-light: #A78BFA;
+      --primary-dark: #6D28D9;
+      --orange: #F97316;
+      --bg: #FAFAFA;
+      --surface: #FFFFFF;
+      --text: #1F2937;
+      --text-secondary: #6B7280;
+      --border: #E5E7EB;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Nav */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      padding: 0 24px;
+    }
+    .nav-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--primary); }
+
+    /* Back link */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--primary);
+      text-decoration: none;
+      margin-bottom: 24px;
+      transition: opacity 0.2s;
+    }
+    .back-link:hover { opacity: 0.7; }
+
+    /* App Hero */
+    .app-hero {
+      background: linear-gradient(135deg, #F3E8FF 0%, #EDE9FE 50%, #FFF7ED 100%);
+      padding: 60px 24px 48px;
+    }
+    .app-hero .container {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+    .app-hero-icon {
+      width: 120px;
+      height: 120px;
+      border-radius: 28px;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, #9333EA, #7C3AED, #6D28D9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 32px rgba(124, 58, 237, 0.3);
+    }
+    .app-hero-icon svg { width: 60px; height: 60px; }
+    .app-hero-info h1 {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+    .app-hero-info .tagline {
+      font-size: 18px;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      max-width: 480px;
+    }
+    .app-hero-info .badges { display: flex; gap: 8px; flex-wrap: wrap; }
+    .badge {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 6px;
+      background: rgba(124, 58, 237, 0.1);
+      color: var(--primary);
+    }
+    .badge.version {
+      background: rgba(249, 115, 22, 0.1);
+      color: var(--orange);
+    }
+
+    /* Section */
+    section { padding: 64px 24px; }
+    .container { max-width: 960px; margin: 0 auto; }
+    .section-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+    .section-subtitle {
+      font-size: 15px;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+    }
+
+    /* Content Stats */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      text-align: center;
+    }
+    .stat-card .number {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-card .label {
+      font-size: 13px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    /* Feature Cards */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+    }
+    .feature-card .icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 14px;
+    }
+    .feature-card h4 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .feature-card p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* Exercise Types */
+    .exercise-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+    .exercise-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .exercise-item .emoji { font-size: 24px; flex-shrink: 0; }
+    .exercise-item .name {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .exercise-item .desc {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    /* Content Table */
+    .content-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .content-table th,
+    .content-table td {
+      padding: 14px 20px;
+      text-align: left;
+      font-size: 14px;
+    }
+    .content-table th {
+      background: #F9FAFB;
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .content-table td {
+      border-top: 1px solid var(--border);
+    }
+    .content-table tr:hover td {
+      background: #FAFAFE;
+    }
+
+    /* Release Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 28px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 4px;
+      bottom: 4px;
+      width: 2px;
+      background: var(--border);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 28px;
+    }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -24px;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 2px solid var(--bg);
+    }
+    .timeline-item.completed::before {
+      background: #10B981;
+    }
+    .timeline-item.planned::before {
+      background: var(--border);
+    }
+    .timeline-item h4 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .timeline-item .date {
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+    .timeline-item p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    .status-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .status-badge.done {
+      background: #D1FAE5;
+      color: #065F46;
+    }
+    .status-badge.planned {
+      background: #FEF3C7;
+      color: #92400E;
+    }
+
+    /* What's New */
+    .whats-new {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+    }
+    .whats-new h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .whats-new .version-label {
+      font-size: 13px;
+      color: var(--orange);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .whats-new ul {
+      list-style: none;
+      padding: 0;
+    }
+    .whats-new li {
+      font-size: 14px;
+      color: var(--text-secondary);
+      padding: 6px 0;
+      padding-left: 20px;
+      position: relative;
+    }
+    .whats-new li::before {
+      content: '✦';
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-size: 12px;
+    }
+
+    /* App Details Bar */
+    .details-bar {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      padding: 20px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin: 32px 0;
+    }
+    .detail-item .label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .detail-item .value {
+      font-size: 15px;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    footer a { color: var(--primary); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* Mobile */
+    @media (max-width: 640px) {
+      .app-hero .container { flex-direction: column; text-align: center; }
+      .app-hero-info .badges { justify-content: center; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .details-bar { gap: 20px; }
+      .nav-links { gap: 16px; }
+      .nav-links a { font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">MII</a>
+      <div class="nav-links">
+        <a href="/#apps">Apps</a>
+        <a href="/#about">About</a>
+        <a href="/#contact">Contact</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- App Hero -->
+  <div class="app-hero">
+    <div class="container">
+      <a href="/" class="back-link">← Back to all apps</a>
+    </div>
+    <div class="container" style="margin-top: 8px;">
+      <div class="app-hero-icon">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 6L42 42H33.2L29 28H19L14.8 42H6L24 6ZM21.4 23H24L26.6 23H21.4Z" fill="white" fill-rule="evenodd"/>
+          <line x1="29" y1="3" x2="33" y2="0" stroke="#F97316" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="app-hero-info">
+        <h1>Apprenons — Learn French</h1>
+        <p class="tagline">Master French from scratch with real phrases, spaced repetition, and eight exercise types. 100% free, 100% offline.</p>
+        <div class="badges">
+          <span class="badge">Education</span>
+          <span class="badge">Free</span>
+          <span class="badge">Offline</span>
+          <span class="badge">CEFR A1–B1</span>
+          <span class="badge version">v1.3.1</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- App Details Bar -->
+  <section style="padding: 0 24px;">
+    <div class="container">
+      <div class="details-bar">
+        <div class="detail-item">
+          <div class="label">Category</div>
+          <div class="value">Education</div>
+        </div>
+        <div class="detail-item">
+          <div class="label">Price</div>
+          <div class="value">Free</div>
+        </div>
+        <div class="detail-item">
+          <div class="label">Age Rating</div>
+          <div class="value">4+</div>
+        </div>
+        <div class="detail-item">
+          <div class="label">Platform</div>
+          <div class="value">Android</div>
+        </div>
+        <div class="detail-item">
+          <div class="label">In-App Purchases</div>
+          <div class="value">None</div>
+        </div>
+        <div class="detail-item">
+          <div class="label">Learning Hours</div>
+          <div class="value">~22 hrs</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What's New -->
+  <section>
+    <div class="container">
+      <div class="whats-new">
+        <h3>What's New</h3>
+        <div class="version-label">Version 1.3.1 — Latest Release</div>
+        <ul>
+          <li>New Home Dashboard with bento-box widget grid layout</li>
+          <li>Grid ↔ List layout toggle in Settings</li>
+          <li>4 new A1 conjugation lessons (-er, -ir, -re, irregular verbs)</li>
+          <li>Expanded number lessons (11–20, 21–100, dates, phone numbers)</li>
+          <li>NEW badges on updated lessons so you never miss new content</li>
+          <li>SRS review count reset fix</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Stats -->
+  <section style="padding-top: 0;">
+    <div class="container">
+      <h2 class="section-title">Content at a Glance</h2>
+      <p class="section-subtitle">Structured content aligned with the Common European Framework of Reference (CEFR).</p>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="number">4</div>
+          <div class="label">CEFR Levels</div>
+        </div>
+        <div class="stat-card">
+          <div class="number">60+</div>
+          <div class="label">Lessons</div>
+        </div>
+        <div class="stat-card">
+          <div class="number">950+</div>
+          <div class="label">Phrases</div>
+        </div>
+        <div class="stat-card">
+          <div class="number">524</div>
+          <div class="label">Vocabulary Words</div>
+        </div>
+        <div class="stat-card">
+          <div class="number">960</div>
+          <div class="label">Conjugation Forms</div>
+        </div>
+        <div class="stat-card">
+          <div class="number">30</div>
+          <div class="label">Dialogues</div>
+        </div>
+      </div>
+
+      <table class="content-table">
+        <thead>
+          <tr>
+            <th>Content</th>
+            <th>Volume</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Levels</td>
+            <td>4 (Pre-A1, A1, A2, B1)</td>
+          </tr>
+          <tr>
+            <td>Lessons</td>
+            <td>60+ across 14 units</td>
+          </tr>
+          <tr>
+            <td>Phrases</td>
+            <td>950+ total</td>
+          </tr>
+          <tr>
+            <td>Vocabulary</td>
+            <td>524 words across 17 categories</td>
+          </tr>
+          <tr>
+            <td>Conjugations</td>
+            <td>40 verbs × 6 pronouns × 4 tenses = 960 forms</td>
+          </tr>
+          <tr>
+            <td>Conjugation Lessons</td>
+            <td>4 dedicated A1 lessons</td>
+          </tr>
+          <tr>
+            <td>Dialogues</td>
+            <td>30 conversations (A1–B1)</td>
+          </tr>
+          <tr>
+            <td>Cultural Notes</td>
+            <td>55 "Le Saviez-Vous?" facts</td>
+          </tr>
+          <tr>
+            <td>Daily Words</td>
+            <td>90 curated Mot du Jour words</td>
+          </tr>
+          <tr>
+            <td>Estimated Learning Hours</td>
+            <td>~22 hours</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 8 Exercise Types -->
+  <section style="background: #F9FAFB;">
+    <div class="container">
+      <h2 class="section-title">8 Exercise Types</h2>
+      <p class="section-subtitle">Varied practice to build every language skill — reading, listening, writing, and recall.</p>
+
+      <div class="exercise-list">
+        <div class="exercise-item">
+          <div class="emoji">📖</div>
+          <div>
+            <div class="name">Structured Lessons</div>
+            <div class="desc">Progressive, unit-based learning</div>
+          </div>
+        </div>
+        <div class="exercise-item">
+          <div class="emoji">🃏</div>
+          <div>
+            <div class="name">Flashcards</div>
+            <div class="desc">Interactive flip cards for memorization</div>
+          </div>
+        </div>
+        <div class="exercise-item">
+          <div class="emoji">✅</div>
+          <div>
+            <div class="name">Quizzes</div>
+            <div class="desc">Multiple-choice &amp; reverse quizzes</div>
+          </div>
+        </div>
+        <div class="exercise-item">
+          <div class="emoji">⌨️</div>
+          <div>
+            <div class="name">Typing Practice</div>
+            <div class="desc">Type words with accent support</div>
+          </div>
+        </div>
+        <div class="exercise-item">
+          <div class="emoji">🎧</div>
+          <div>
+            <div class="name">Listening</div>
+            <div class="desc">Hear French, identify translations</div>
+          </div>
+        </div>
+        <div class="exercise-item">
+          <div class="emoji">🧩</div>
+          <div>
+            <div class="name">Sentence Builder</div>
+            <div class="desc">Arrange word blocks into sentences</div>
+          </div>
+        </div>
+        <div class="exercise-item">
+          <div class="emoji">🔤</div>
+          <div>
+            <div class="name">Conjugation Drills</div>
+            <div class="desc">Practice 40 verbs across 4 tenses</div>
+          </div>
+        </div>
+        <div class="exercise-item">
+          <div class="emoji">💬</div>
+          <div>
+            <div class="name">Dialogues</div>
+            <div class="desc">Real-world conversations with Q&amp;A</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Features -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">Key Features</h2>
+      <p class="section-subtitle">Everything you need to learn French effectively.</p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="icon" style="background: #F3E8FF;">🧠</div>
+          <h4>Spaced Repetition (SRS)</h4>
+          <p>SM-2 algorithm schedules reviews at optimal intervals for long-term retention. Smart review scheduling adapts to your performance.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon" style="background: #ECFDF5;">📊</div>
+          <h4>Adaptive Difficulty</h4>
+          <p>Per-topic accuracy tracking detects your weak and strong areas, then provides personalized practice recommendations.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon" style="background: #FEF2F2;">📓</div>
+          <h4>Mistake Journal</h4>
+          <p>Automatically records wrong answers with pattern detection — categorizes errors by gender, accent, conjugation, and word order.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon" style="background: #FFF7ED;">🔥</div>
+          <h4>Streaks &amp; XP</h4>
+          <p>Earn experience points, track daily streaks, and unlock 14 achievements. Weekly streak freeze lets you miss a day without losing progress.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon" style="background: #EFF6FF;">🗣️</div>
+          <h4>Text-to-Speech</h4>
+          <p>Hear correct French pronunciation for every phrase and word with adjustable playback speed.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon" style="background: #FFFBEB;">📅</div>
+          <h4>Daily Content</h4>
+          <p>Mot du Jour (90 curated daily words) and  cultural notes rotate daily on your home screen to keep learning fresh.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon" style="background: #F0FDF4;">🏠</div>
+          <h4>Smart Dashboard</h4>
+          <p>Bento-box widget grid with categorized sections — Core Learning, Reference, and Practice — with badge alerts for due reviews.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon" style="background: #FDF2F8;">🌙</div>
+          <h4>Dark Mode</h4>
+          <p>Full dark and light theme support. Clean, modern interface with haptic feedback that feels native on every device.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon" style="background: #F0F9FF;">📶</div>
+          <h4>100% Offline</h4>
+          <p>All content is bundled locally — learn anywhere without an internet connection. On a plane, in the metro, or at a café.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Development Timeline -->
+  <section style="background: #F9FAFB;">
+    <div class="container">
+      <h2 class="section-title">Development Timeline</h2>
+      <p class="section-subtitle">From launch to v1.3.1 — every major milestone.</p>
+
+      <div class="timeline">
+        <div class="timeline-item completed">
+          <h4>Phase 1 — Fix &amp; Fill <span class="status-badge done">Completed</span></h4>
+          <div class="date">February 2026</div>
+          <p>Content expansion to 950+ phrases and 524 vocabulary words. Added lesson progress indicators, continue-where-you-left-off, conjugation expansion to 40 verbs (960 forms), and onboarding-to-level routing.</p>
+        </div>
+        <div class="timeline-item completed">
+          <h4>Phase 2 — B1 &amp; Conversations <span class="status-badge done">Completed</span></h4>
+          <div class="date">April 2026</div>
+          <p>Launched B1 level with 256 phrases across 4 units. Added 30 mini-dialogues with comprehension questions and 55 cultural notes with daily rotation.</p>
+        </div>
+        <div class="timeline-item completed">
+          <h4>Phase 3 — Smart Learning <span class="status-badge done">Completed</span></h4>
+          <div class="date">May 2026</div>
+          <p>Introduced mistake journal with pattern detection, adaptive difficulty engine, daily word of the day, streak freeze, home screen UX redesign with bento-box layout, 4 A1 conjugation curriculum lessons, and content badging system.</p>
+        </div>
+        <div class="timeline-item planned">
+          <h4>Phase 4 — Polish &amp; Engagement <span class="status-badge planned">Planned</span></h4>
+          <div class="date">June 2026</div>
+          <p>UI refinements, grammar reference screen, accent input helper, mixed-tense conjugation mode, and configurable session sizes.</p>
+        </div>
+        <div class="timeline-item planned">
+          <h4>Phase 5 — Growth Features <span class="status-badge planned">Planned</span></h4>
+          <div class="date">July 2026</div>
+          <p>Social sharing, performance analytics, enhanced achievements display, and leaderboard-ready infrastructure.</p>
+        </div>
+        <div class="timeline-item planned">
+          <h4>Phase 6 — Guided Curriculum <span class="status-badge planned">Planned</span></h4>
+          <div class="date">August 2026</div>
+          <p>Adaptive learning paths, prerequisite gating, and skill-based routing for a fully guided experience.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who It's For -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">Who It's For</h2>
+      <p class="section-subtitle">Designed for anyone who wants to learn French — no matter where you're starting.</p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="icon" style="background: #F3E8FF;">🌱</div>
+          <h4>Complete Beginners</h4>
+          <p>Start from zero with Pre-A1 content — basic greetings, numbers, and essential phrases to build your foundation.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon" style="background: #FFF7ED;">✈️</div>
+          <h4>Travelers</h4>
+          <p>Learn practical phrases for ordering food, asking directions, and navigating real-world situations in France.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon" style="background: #ECFDF5;">📚</div>
+          <h4>Exam Prep</h4>
+          <p>CEFR-aligned content from A1 through B1 helps you prepare for DELF and other French language certifications.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon" style="background: #EFF6FF;">💡</div>
+          <h4>Language Enthusiasts</h4>
+          <p>Explore French culture through dialogues, cultural notes, and varied exercises that keep practice interesting.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Privacy -->
+  <section style="background: #F9FAFB;">
+    <div class="container">
+      <h2 class="section-title">Privacy &amp; Trust</h2>
+      <p class="section-subtitle">Your data stays on your device. Always.</p>
+      <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+        <div class="feature-card">
+          <div class="icon" style="background: #F3E8FF;">🔒</div>
+          <h4>No Accounts Required</h4>
+          <p>Start learning immediately — no sign-up, no login, no personal data collected.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon" style="background: #ECFDF5;">🚫</div>
+          <h4>No Ads, No Tracking</h4>
+          <p>No analytics, no telemetry, no third-party SDKs. Zero data leaves your device.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon" style="background: #FFF7ED;">🌍</div>
+          <h4>COPPA &amp; GDPR Compliant</h4>
+          <p>Rated 4+ and safe for all ages. Meets international privacy standards.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 Mysticode Innovations Inc. (MII). All rights reserved. · <a href="privacy.html">Privacy Policy</a> · <a href="/">Home</a></p>
+  </footer>
+
+</body>
+</html>
