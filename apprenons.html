@@ -125,16 +125,41 @@
     }
     .store-links { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
     .store-btn {
-      font-size: 14px;
-      font-weight: 600;
-      padding: 10px 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 8px 18px 8px 14px;
       border-radius: 10px;
-      background: var(--text);
+      background: #000000;
       color: #FFFFFF;
       text-decoration: none;
-      transition: opacity 0.2s;
+      transition: opacity 0.2s, transform 0.2s;
     }
-    .store-btn:hover { opacity: 0.85; }
+    .store-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+    .store-btn:focus-visible { outline: 3px solid var(--primary-light); outline-offset: 2px; }
+    .store-btn svg { width: 24px; height: 24px; flex-shrink: 0; }
+    .store-btn .store-text { display: flex; flex-direction: column; line-height: 1.15; text-align: left; }
+    .store-btn .store-small { font-size: 10px; font-weight: 500; letter-spacing: 0.2px; }
+    .store-btn .store-name { font-size: 17px; font-weight: 600; letter-spacing: -0.3px; }
+
+    /* Download CTA */
+    .download-cta {
+      background: linear-gradient(135deg, #F3E8FF 0%, #EDE9FE 50%, #FFF7ED 100%);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 48px 24px;
+      text-align: center;
+    }
+    .download-cta .app-hero-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 18px;
+      margin: 0 auto 20px;
+    }
+    .download-cta .app-hero-icon svg { width: 36px; height: 36px; }
+    .download-cta .section-subtitle { margin-bottom: 24px; }
+    .download-cta .store-links { justify-content: center; margin-top: 0; }
     .badge.version {
       background: rgba(249, 115, 22, 0.1);
       color: var(--orange);
@@ -345,6 +370,8 @@
     @media (max-width: 640px) {
       .app-hero .container { flex-direction: column; text-align: center; }
       .app-hero-info .badges { justify-content: center; }
+      .app-hero-info .store-links { justify-content: center; }
+      .download-cta { padding: 36px 16px; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .details-bar { gap: 20px; }
       .nav-links { gap: 16px; }
@@ -391,8 +418,14 @@
           <span class="badge version">v1.6.0</span>
         </div>
         <div class="store-links">
-          <a class="store-btn" href="https://apps.apple.com/app/id6762049343" target="_blank" rel="noopener">Download on the App Store</a>
-          <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.mii.apprenons" target="_blank" rel="noopener">Get it on Google Play</a>
+          <a class="store-btn" href="https://apps.apple.com/app/apprenons-learn-french/id6762049343" target="_blank" rel="noopener" aria-label="Download Apprenons on the App Store">
+            <svg viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+            <span class="store-text"><span class="store-small">Download on the</span><span class="store-name">App Store</span></span>
+          </a>
+          <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.mii.apprenons" target="_blank" rel="noopener" aria-label="Get Apprenons on Google Play">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M3.61 1.81 13.79 12 3.61 22.19c-.25-.26-.41-.66-.41-1.19V3c0-.53.16-.93.41-1.19z"/><path fill="#34A853" d="M3.61 1.81 13.79 12l3.31-3.31-12-6.82c-.6-.34-1.15-.37-1.49-.06z"/><path fill="#EA4335" d="M3.61 22.19c.34.31.89.28 1.49-.06l12-6.82L13.79 12 3.61 22.19z"/><path fill="#FBBC04" d="M17.1 8.69 13.79 12l3.31 3.31 3.7-2.11c1.05-.6 1.05-1.8 0-2.4l-3.7-2.11z"/></svg>
+            <span class="store-text"><span class="store-small">GET IT ON</span><span class="store-name">Google Play</span></span>
+          </a>
         </div>
       </div>
     </div>
@@ -765,6 +798,32 @@
           <div class="icon" style="background: #FFF7ED; font-size: 0;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
           <h4>COPPA &amp; GDPR Compliant</h4>
           <p>Rated 4+ and safe for all ages. Meets international privacy standards.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Download -->
+  <section id="download">
+    <div class="container">
+      <div class="download-cta">
+        <div class="app-hero-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24 6L42 42H33.2L29 28H19L14.8 42H6L24 6ZM21.4 23H24L26.6 23H21.4Z" fill="white" fill-rule="evenodd"/>
+            <line x1="29" y1="3" x2="33" y2="0" stroke="#F97316" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h2 class="section-title">Download Apprenons Now</h2>
+        <p class="section-subtitle">Start learning French today — free, offline, and no account needed.</p>
+        <div class="store-links">
+          <a class="store-btn" href="https://apps.apple.com/app/apprenons-learn-french/id6762049343" target="_blank" rel="noopener" aria-label="Download Apprenons on the App Store">
+            <svg viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+            <span class="store-text"><span class="store-small">Download on the</span><span class="store-name">App Store</span></span>
+          </a>
+          <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.mii.apprenons" target="_blank" rel="noopener" aria-label="Get Apprenons on Google Play">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M3.61 1.81 13.79 12 3.61 22.19c-.25-.26-.41-.66-.41-1.19V3c0-.53.16-.93.41-1.19z"/><path fill="#34A853" d="M3.61 1.81 13.79 12l3.31-3.31-12-6.82c-.6-.34-1.15-.37-1.49-.06z"/><path fill="#EA4335" d="M3.61 22.19c.34.31.89.28 1.49-.06l12-6.82L13.79 12 3.61 22.19z"/><path fill="#FBBC04" d="M17.1 8.69 13.79 12l3.31 3.31 3.7-2.11c1.05-.6 1.05-1.8 0-2.4l-3.7-2.11z"/></svg>
+            <span class="store-text"><span class="store-small">GET IT ON</span><span class="store-name">Google Play</span></span>
+          </a>
         </div>
       </div>
     </div>
